@@ -1,0 +1,32 @@
+import {TagIcon} from '@sanity/icons'
+import {defineField, defineType} from 'sanity'
+
+export const projectType = defineType({
+  name: 'project',
+  title: 'Project',
+  type: 'document',
+  icon: TagIcon,
+  fields: [
+    defineField({
+        name: 'name',
+        title: 'Project Name',
+        type: 'string',
+    }),
+    defineField({
+        name: 'slug',
+        type: 'slug',
+        options: {
+          source: 'name',
+        },
+    }),
+    defineField({
+        name: "description",
+        type: "blockContent",
+    }),
+    defineField({
+        name: 'photo',
+        title: 'Project Photo',
+        type: 'image',
+    }),
+  ],
+})
