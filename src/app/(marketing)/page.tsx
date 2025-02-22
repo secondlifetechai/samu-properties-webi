@@ -11,6 +11,8 @@ import { getAbout, getAllPosts, getFeaturedPartner, getHomeSetting, getPartnerTy
 import { notFound } from 'next/navigation';
 import React from 'react'
 
+export const revalidate = 10;
+
 async function Home() {
   const settings = (await getHomeSetting("l-expertise-quebecoise-pour-vos-projets-a-dubai")) || notFound();
   const about = (await getAbout("about-samu-properties")) || notFound();

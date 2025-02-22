@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   description:
     "Step into the world of luxury",
 };
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -26,5 +27,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-export const revalidate = 10;
