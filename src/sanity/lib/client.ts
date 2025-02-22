@@ -17,16 +17,17 @@ export const clientFetch = <const QueryString extends string>({
   query,
   params = {},
   tags = [],
-  // revalidate = 0,
+  revalidate = 10,
 }: {
   query: QueryString;
   params?: QueryParams;
   tags?: string[];
-  // revalidate?: number | false;
+  revalidate?: number | false;
 }) => {
   return client.fetch(query, params, {
     next: {
       tags,
+      revalidate
     },
   });
 };
