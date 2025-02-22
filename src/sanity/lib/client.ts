@@ -17,7 +17,7 @@ export const clientFetch = <const QueryString extends string>({
   query,
   params = {},
   tags = [],
-  revalidate = 10,
+  revalidate = 0,
 }: {
   query: QueryString;
   params?: QueryParams;
