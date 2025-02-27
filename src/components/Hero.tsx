@@ -18,7 +18,7 @@ function Hero({setting} : any) {
   const imgy = width && width > 640 ? '/backgrounds/desks/d1.png' : '/backgrounds/mobiles/m2/m1.jpeg';
   
   return (
-    <section className="bg-cover bg-center bg-no-repeat bg-blend-multiply bg-gray-400 md:bg-gray-50" style={{backgroundImage: "url(" + imgy + ")"}}>
+    <section className="bg-cover bg-center bg-no-repeat bg-blend-multiply bg-gray-50 md:bg-gray-50" style={{backgroundImage: "url(" + imgy + ")"}}>
       <div
         className="px-8 mx-auto max-w-screen-xl text-center py-24 lg:py-56 pt-60 lg:pt-60">
         <div className='flex justify-center'>

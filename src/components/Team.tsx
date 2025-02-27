@@ -86,7 +86,7 @@ function Team({setting, teams, properties} : any) {
     const imgy = width && width > 640 ? '/backgrounds/desks/d4.png' : '/backgrounds/mobiles/m2/m4.jpeg';
 
   return (
-    <section className="bg-cover bg-no-repeat bg-gray-400 md:bg-gray-50 bg-blend-multiply pb-12" style={{backgroundImage: "url(" + imgy + ")"}}>
+    <section className="bg-cover bg-no-repeat bg-gray-50 md:bg-gray-50 bg-blend-multiply pb-12" style={{backgroundImage: "url(" + imgy + ")"}}>
 
         <motion.div 
             initial={{opacity:0, y:100}}

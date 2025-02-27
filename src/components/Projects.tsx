@@ -52,7 +52,7 @@ function Projects({featuredPartner, setting, projects} : any) {
     const imgy = width && width > 640 ? '/backgrounds/desks/d3.png' : '/backgrounds/mobiles/m2/m3.jpeg';
 
   return (
-    <section className="bg-cover bg-no-repeat bg-gray-400 md:bg-gray-100 bg-blend-multiply flex flex-col" style={{backgroundImage: "url(" + imgy + ")"}} id='projects'>
+    <section className="bg-cover bg-no-repeat bg-gray-50 md:bg-gray-100 bg-blend-multiply flex flex-col" style={{backgroundImage: "url(" + imgy + ")"}} id='projects'>
 
         <motion.div 
             initial={{opacity:0, y:100}}

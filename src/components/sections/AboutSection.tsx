@@ -12,11 +12,11 @@ import { motion } from "framer-motion";
 export const AboutSection = ({setting, about} : any) => {
     const { width } : any = useWindowDimensions();
 
-    const imgy = width && width > 640 ? '/backgrounds/desks/d1.png' : '/backgrounds/mobiles/h1.jpeg';
+    const imgy = width && width > 640 ? '/backgrounds/desks/d1.png' : '/backgrounds/mobiles/m2/m1.jpeg';
 
   return (
     <>
-        <section className="pt-10 overflow-hidden bg-cover bg-center bg-no-repeat bg-blend-multiply bg-gray-500 md:bg-gray-50 md:pt-0 sm:pt-16 2xl:pt-16" style={{backgroundImage: "url(" + imgy + ")"}}>
+        <section className="pt-10 overflow-hidden bg-cover bg-center bg-no-repeat bg-blend-multiply bg-gray-50 md:bg-gray-50 md:pt-0 sm:pt-16 2xl:pt-16" style={{backgroundImage: "url(" + imgy + ")"}}>
             <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
                 <div className="grid items-center grid-cols-1 md:grid-cols-2 mt-16">
 

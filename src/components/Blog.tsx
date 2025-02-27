@@ -51,7 +51,7 @@ function Blog({setting, posts} : any) {
     const imgy = width && width > 640 ? '/backgrounds/desks/d5.png' : '/backgrounds/mobiles/m2/m5.jpeg';
 
   return (
-    <section className="bg-cover bg-no-repeat bg-gray-400 md:bg-gray-50 bg-blend-multiply pt-10" style={{backgroundImage: "url(" + imgy + ")"}} id='blog'>
+    <section className="bg-cover bg-no-repeat bg-gray-50 md:bg-gray-50 bg-blend-multiply pt-10" style={{backgroundImage: "url(" + imgy + ")"}} id='blog'>
       <div className="p-4 font-[sans-serif] pt-8 pb-16 ">
         <motion.div 
           initial={{opacity:0, y:100}}
