@@ -28,7 +28,20 @@ import {
                     <img className="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src={urlFor(team?.photo).url()} alt="" />
                     <div className="flex flex-col justify-between p-4 leading-normal">
                         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-300">{team.name}</h5>
-                        <p className="mb-3 font-normal text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+                        {team?.about && (
+                            <PortableText 
+                                value={team?.about}
+                                components={{
+                                    block: {
+                                        normal: ({ children }) => (
+                                            <p className="mb-3 font-normal text-gray-400">
+                                                {children}
+                                            </p>
+                                        ),
+                                    }
+                                }} 
+                            />
+                        )}
                     </div>
                 </div>
             </div>
