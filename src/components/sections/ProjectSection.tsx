@@ -24,10 +24,10 @@ export const ProjectSection = ({ project } : any) => {
                             <p className="text-sm text-gray-800">Project</p>
                         </div>
                         <p className="text-sm text-gray-300 sm:text-xl">
-                            {project.location}
+                            {project?.location}
                         </p>
                         <h1 className="mb-6 text-4xl font-bold md:text-6xl md:mb-8 text-gray-200">
-                            {project.name}
+                            {project?.name}
                         </h1>
                         {project?.description && (
                             <PortableText 
@@ -46,7 +46,7 @@ export const ProjectSection = ({ project } : any) => {
                         <div className="mb-8 mt-8 h-px w-full bg-slate-700"></div>
                         <div className="mb-6 flex flex-col gap-2 text-sm text-gray-300 sm:text-base md:mb-8">
                             <p className="text-lg">
-                                <strong>Price: </strong>{(project.price).toLocaleString('en-US', {
+                                <strong>Price: </strong>{(project?.price)?.toLocaleString('en-US', {
                                                 style: 'currency',
                                                 currency: 'AED',
                                             })}

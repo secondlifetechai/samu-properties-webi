@@ -29,11 +29,11 @@ export const PropertySection = ({ property } : any) => {
                         transition={{duration:1.8, delay:0.8}}
                         className="mt-6 sm:mt-8 lg:mt-0">
                         <h1 className="text-2xl font-semibold text-gray-200 sm:text-2xl">
-                            {property.name}
+                            {property?.name}
                         </h1>
                         <div className="mt-4 sm:items-center sm:gap-4 sm:flex">
                             <p className="text-2xl font-extrabold text-gray-300 sm:text-3xl">
-                                {(property.regularPrice).toLocaleString('en-US', {
+                                {(property?.regularPrice).toLocaleString('en-US', {
                                     style: 'currency',
                                     currency: 'AED',
                                 })}
@@ -43,7 +43,7 @@ export const PropertySection = ({ property } : any) => {
                                 <span
                                     className="text-sm font-medium leading-none text-gray-400 underline hover:no-underline"
                                 >
-                                    {property.type}
+                                    {property?.type}
                                 </span>
                             </div>
                         </div>
@@ -53,7 +53,7 @@ export const PropertySection = ({ property } : any) => {
                             className="text-white mt-4 sm:mt-0 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800 flex items-center justify-center"
                             role="button"
                             >
-                                {property.address}
+                                {property?.address}
                             </span>
                         </div>
 
@@ -75,19 +75,19 @@ export const PropertySection = ({ property } : any) => {
                         )}
 
                         <p className="text-gray-300">
-                            <strong>Bedrooms: </strong>{property.bedrooms}
+                            <strong>Bedrooms: </strong>{property?.bedrooms}
                         </p>
 
                         <p className="text-gray-300">
-                            <strong>Bathrooms: </strong>{property.bathrooms}
+                            <strong>Bathrooms: </strong>{property?.bathrooms}
                         </p>
 
                         <p className="text-gray-300">
-                            <strong>Furnished?: </strong>{property.furnished ? "Furnished" : "Unfurnished"}
+                            <strong>Furnished?: </strong>{property?.furnished ? "Furnished" : "Unfurnished"}
                         </p>
 
                         <p className="text-gray-300">
-                            <strong>Parking?: </strong>{property.parking ? "Yes" : "No"}
+                            <strong>Parking?: </strong>{property?.parking ? "Yes" : "No"}
                         </p>
                     </motion.div>
                 </div>

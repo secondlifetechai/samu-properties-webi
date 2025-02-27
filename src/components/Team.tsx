@@ -138,31 +138,31 @@ function Team({setting, teams, properties} : any) {
                     {properties && properties.length > 0 && (
                         <Slider {...settings2}>
                             {properties.map((property : any) => (
-                                <div key={property.slug} className=" bg-[#173567] rounded-lg overflow-hidden">
+                                <div key={property?.slug} className=" bg-[#173567] rounded-lg overflow-hidden">
                                     <div className="relative h-52">
                                         <img className="h-52 w-full object-cover" src={urlFor(property?.mainImage).url()} alt="" />
                                         <span className="absolute bottom-5 right-5 bg-gray-500 text-sm font-semibold px-2.5 py-2 rounded text-gray-50">
-                                            {property.type}
+                                            {property?.type}
                                         </span>
                                     </div>
                         
                                     <div className="p-4 pt-0 flex justify-between items-center">
                                         <div>
                                             <h2 className="text-lg font-semibold mt-2 text-gray-300">
-                                                {property.name}
+                                                {property?.name}
                                             </h2>
                                             <p className='text-gray-400'>
-                                                {property.address}
+                                                {property?.address}
                                             </p>
                                             <span className="text-lg font-bold text-gray-400 ">
-                                                {(property.regularPrice).toLocaleString('en-US', {
+                                                {(property?.regularPrice)?.toLocaleString('en-US', {
                                                     style: 'currency',
                                                     currency: 'AED',
                                                 })}
                                             </span>
                                         </div>
                             
-                                        <Link href={`/property/${property.slug}`} className="cursor-pointer h-14 w-14">
+                                        <Link href={`/property/${property?.slug}`} className="cursor-pointer h-14 w-14">
                                             <svg className="h-14 w-14" width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M30.0001 52.5001C42.4265 52.5001 52.5001 42.4265 52.5001 30.0001C52.5001 17.5736 42.4265 7.5 30.0001 7.5C17.5736 7.5 7.5 17.5736 7.5 30.0001C7.5 42.4265 17.5736 52.5001 30.0001 52.5001Z" fill="black" stroke="black" strokeWidth="2" strokeMiterlimit="10" />
                                             <path d="M31.4297 37.9454L39.375 30L31.4297 22.0547" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
