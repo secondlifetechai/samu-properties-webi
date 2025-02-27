@@ -188,6 +188,8 @@ export type Project = {
   _rev: string;
   name?: string;
   slug?: Slug;
+  price?: number;
+  location?: string;
   description?: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -254,6 +256,7 @@ export type Team = {
   _rev: string;
   name?: string;
   title?: string;
+  subTitle?: string;
   slug?: Slug;
   photo?: {
     asset?: {
@@ -1156,9 +1159,11 @@ export type FEATURED_PARTNER_QUERYResult = {
   _id: string;
 } | null;
 // Variable: PROJECTS_QUERY
-// Query: *[_type=='project']|order(name asc){  name,  description,  photo,  "slug":slug.current}
+// Query: *[_type=='project']|order(name asc){  name,  price,  location,  description,  photo,  "slug":slug.current}
 export type PROJECTS_QUERYResult = Array<{
   name: string | null;
+  price: number | null;
+  location: string | null;
   description: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -1339,7 +1344,7 @@ declare module "@sanity/client" {
     "*[_type=='homeSettings' && slug.current == $slug][0]{\n  logo,\n  heroTitle,\n  heroSubTitle,\n  heroButton,\n  aboutTitle,\n  projectTitle,\n  teamTitle,\n  propertyTitle,\n  propertySubTitle,\n  propertyButton,\n  blogTitle,\n  blogSubTitle,\n  blogButton,\n  contactTitle,\n  contactSubTitle,\n  contactPhoneNumber,\n  contactEmail,\n  address,\n  insatagramLink,\n  facebookLink,\n  linkedInLink,\n  twitterLink,\n _id\n}": HOME_SETTING_QUERYResult;
     "*[_type=='about' && slug.current == $slug][0]{\n  aboutUs,\n  mission,\n  vision,\n  aboutPhoto,\n _id\n}": ABOUT_QUERYResult;
     "*[_type=='featuredPartners' && slug.current == $slug][0]{\n  title,\n  description,\n  logo,\n _id\n}": FEATURED_PARTNER_QUERYResult;
-    "*[_type=='project']|order(name asc){\n  name,\n  description,\n  photo,\n  \"slug\":slug.current\n}": PROJECTS_QUERYResult;
+    "*[_type=='project']|order(name asc){\n  name,\n  price,\n  location,\n  description,\n  photo,\n  \"slug\":slug.current\n}": PROJECTS_QUERYResult;
     "*[_type=='team']|order(name asc){\n  name,\n  title,\n  photo,\n  \"slug\":slug.current\n}": TEAMS_QUERYResult;
     "*[_type=='listing']|order(name asc){\n  name,\n  description,\n  address,\n  regularPrice,\n  discountPrice,\n  bathrooms,\n  bedrooms,\n  furnished,\n  parking,\n  type,\n  offer,\n  mainImage,\n  \"slug\":slug.current\n}": PROPERTIES_QUERYResult;
     "*[_type=='partner']|order(name asc){\n  name,\n  description,\n  isFeatured,\n  logo,\n  \"slug\":slug.current\n}": PARTNERS_QUERYResult;

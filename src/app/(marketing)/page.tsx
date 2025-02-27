@@ -25,7 +25,7 @@ async function Home() {
     <>
       <Header setting={settings} />
       <Hero setting={settings} />
-      <About setting={settings} about={about} />
+      <About setting={settings} about={about} showTitle={true} />
       <Projects featuredPartner={featuredPartner} setting={settings} projects={projects} />
       <Team setting={settings} teams={teams} properties={properties} />
       <Blog setting={settings} posts={posts} />

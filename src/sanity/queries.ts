@@ -53,7 +53,7 @@ export const getCategories = async () => {
 };
 
 const POST_QUERY = defineQuery(`*[_type=='post' && slug.current == $slug][0]{
-   publishedAt,
+  publishedAt,
   title,
   mainImage,
   excerpt,
@@ -197,6 +197,8 @@ export const getFeaturedPartner = async (slug: string) => {
 
 const PROJECTS_QUERY = defineQuery(`*[_type=='project']|order(name asc){
   name,
+  price,
+  location,
   description,
   photo,
   "slug":slug.current
@@ -212,6 +214,7 @@ const TEAMS_QUERY = defineQuery(`*[_type=='team']|order(name asc){
   name,
   title,
   photo,
+  about,
   "slug":slug.current
 }`);
 
@@ -245,6 +248,7 @@ export const getPropertyTypes = async () => {
 
 const PARTNERS_QUERY = defineQuery(`*[_type=='partner']|order(name asc){
   name,
+  website,
   description,
   isFeatured,
   logo,
@@ -254,5 +258,44 @@ const PARTNERS_QUERY = defineQuery(`*[_type=='partner']|order(name asc){
 export const getPartnerTypes = async () => {
   return await clientFetch({
     query: PARTNERS_QUERY,
+  });
+};
+
+const PROJECT_QUERY = defineQuery(`*[_type=='project' && slug.current == $slug][0]{
+  name,
+  price,
+  location,
+  description,
+  photo,
+ _id
+}`);
+
+export const getProject = async (slug: string) => {
+  return await clientFetch({
+    query: PROJECT_QUERY,
+    params: { slug },
+  });
+};
+
+const PROPERTY_QUERY = defineQuery(`*[_type=='listing' && slug.current == $slug][0]{
+  name,
+  description,
+  address,
+  regularPrice,
+  discountPrice,
+  bathrooms,
+  bedrooms,
+  furnished,
+  parking,
+  type,
+  offer,
+  mainImage,
+ _id
+}`);
+
+export const getProperty = async (slug: string) => {
+  return await clientFetch({
+    query: PROPERTY_QUERY,
+    params: { slug },
   });
 };

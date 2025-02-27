@@ -20,6 +20,15 @@ export const projectType = defineType({
         },
     }),
     defineField({
+      name: 'price',
+      title: 'Project Price',
+      type: 'number',
+    }),
+    defineField({
+      name: 'location',
+      type: 'string',
+  }),
+    defineField({
         name: "description",
         type: "blockContent",
     }),

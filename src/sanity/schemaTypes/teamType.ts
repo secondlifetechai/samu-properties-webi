@@ -27,6 +27,11 @@ export const teamType = defineType({
         },
     }),
     defineField({
+      name: "about",
+      title: "About Team Member",
+      type: "blockContent",
+  }),
+    defineField({
         name: 'photo',
         type: 'image',
     }),

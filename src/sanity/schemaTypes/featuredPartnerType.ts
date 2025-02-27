@@ -19,6 +19,11 @@ export const featuredPartnerType = defineType({
         },
     }),
     defineField({
+      name: 'website',
+      title: 'Patner Website',
+      type: 'string',
+    }),
+    defineField({
         name: "description",
         type: "blockContent",
     }),
