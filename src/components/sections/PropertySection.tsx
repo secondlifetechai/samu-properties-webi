@@ -11,7 +11,7 @@ export const PropertySection = ({ property } : any) => {
     const imgy = width && width > 640 ? '/backgrounds/desks/d4.png' : '/backgrounds/mobiles/m2/m4.jpeg';
 
     return (
-        <section className="pt-10 overflow-hidden bg-cover bg-center bg-no-repeat bg-blend-multiply bg-gray-50 md:bg-gray-50 md:pt-0 sm:pt-16 2xl:pt-16 antialiased" style={{backgroundImage: "url(" + imgy + ")"}}>
+        <section className="pt-10 overflow-hidden bg-cover bg-center bg-no-repeat bg-blend-multiply md:bg-gray-50 md:pt-0 sm:pt-16 2xl:pt-16 antialiased" style={{backgroundImage: "url(" + imgy + ")"}}>
             <div className="max-w-screen-xl px-4 mx-auto 2xl:px-0 mt-28 mb-14">
                 <div className="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
                     <motion.div 

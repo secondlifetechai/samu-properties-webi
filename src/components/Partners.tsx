@@ -52,7 +52,7 @@ const Partners = ({partners} : any) => {
     const imgy = width && width > 640 ? '/backgrounds/desks/d1.png' : '/backgrounds/mobiles/m2/m7.jpeg';
 
   return (
-    <div className="bg-cover bg-no-repeat bg-gray-50 md:bg-gray-50 bg-blend-multiply p-8 min-h-[350px] flex items-center justify-center font-sans" style={{backgroundImage: "url(" + imgy + ")"}}>
+    <div className="bg-cover bg-no-repeat md:bg-gray-50 bg-blend-multiply p-8 min-h-[350px] flex items-center justify-center font-sans" style={{backgroundImage: "url(" + imgy + ")"}}>
       <motion.div 
         initial={{opacity:0, y:100}}
         whileInView={{opacity:1, y:0}}

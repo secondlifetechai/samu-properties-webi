@@ -14,7 +14,7 @@ export const BlogPostSection = ({ post } : any) => {
     const imgy = width && width > 640 ? '/backgrounds/desks/d5.png' : '/backgrounds/mobiles/m2/m2.jpeg';
 
     return (
-        <main className="pt-10 overflow-hidden bg-cover bg-center bg-no-repeat bg-blend-multiply bg-gray-50 md:bg-gray-50 md:pt-0 sm:pt-16 2xl:pt-16 antialiased" style={{backgroundImage: "url(" + imgy + ")"}}>
+        <main className="pt-10 overflow-hidden bg-cover bg-center bg-no-repeat bg-blend-multiply md:bg-gray-50 md:pt-0 sm:pt-16 2xl:pt-16 antialiased" style={{backgroundImage: "url(" + imgy + ")"}}>
             <div className="flex justify-between px-4 mx-auto max-w-screen-xl mt-28 mb-16">
                 <article className="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
                     {post?.author && (

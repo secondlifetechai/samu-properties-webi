@@ -14,7 +14,7 @@ function About({setting, about, showTitle = false} : any) {
     const imgy = width && width > 640 ? '/backgrounds/desks/d2.png' : '/backgrounds/mobiles/m2/m2.jpeg';
 
   return (
-    <section className="bg-cover bg-no-repeat bg-gray-50 md:bg-gray-50 bg-blend-multiply" style={{backgroundImage: "url(" + imgy + ")"}}>
+    <section className="bg-cover bg-no-repeat md:bg-gray-50 bg-blend-multiply" style={{backgroundImage: "url(" + imgy + ")"}}>
         <div className="max-w-6xl mx-auto py-16 px-4">
             { showTitle && 
                 <motion.h2 

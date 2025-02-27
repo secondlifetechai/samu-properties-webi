@@ -14,7 +14,7 @@ function Footer({setting} : any) {
     const imgy = width && width > 640 ? '/backgrounds/desks/d6.png' : '/backgrounds/mobiles/m2/m7.jpeg';
 
   return (
-    <footer className="bg-cover bg-no-repeat bg-gray-50 md:bg-gray-50 bg-blend-multiply" style={{backgroundImage: "url(" + imgy + ")"}}>
+    <footer className="bg-cover bg-no-repeat md:bg-gray-50 bg-blend-multiply" style={{backgroundImage: "url(" + imgy + ")"}}>
         <div className="p-4 font-[sans-serif] py-16 ">
             <div className="max-w-screen-xl mx-auto bg-black bg-opacity-60 border border-gray-800 p-8">
                 <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-8">

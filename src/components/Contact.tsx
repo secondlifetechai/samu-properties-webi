@@ -10,7 +10,7 @@ const Contact = ({setting} : any) => {
      const imgy = width && width > 640 ? '/backgrounds/desks/d2.png' : '/backgrounds/mobiles/m2/m6.jpeg';
 
   return (
-    <div className="mx-auto bg-cover bg-no-repeat bg-gray-50 md:bg-gray-50 bg-blend-multiply" style={{backgroundImage: "url(" + imgy + ")"}} id='contact'>
+    <div className="mx-auto bg-cover bg-no-repeat md:bg-gray-50 bg-blend-multiply" style={{backgroundImage: "url(" + imgy + ")"}} id='contact'>
         <div className="grid lg:grid-cols-2 items-center gap-14 sm:p-8 p-4 font-[sans-serif] py-16 max-w-6xl mx-auto">
             <div>
                 <motion.h1 

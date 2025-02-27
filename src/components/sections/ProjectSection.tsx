@@ -11,7 +11,7 @@ export const ProjectSection = ({ project } : any) => {
     const imgy = width && width > 640 ? '/backgrounds/desks/d3.png' : '/backgrounds/mobiles/m2/m3.jpeg';
 
     return (
-        <section className="pt-10 overflow-hidden bg-cover bg-center bg-no-repeat bg-blend-multiply bg-gray-50 md:bg-gray-50 md:pt-0 sm:pt-16 2xl:pt-16" style={{backgroundImage: "url(" + imgy + ")"}}>
+        <section className="pt-10 overflow-hidden bg-cover bg-center bg-no-repeat bg-blend-multiply md:bg-gray-50 md:pt-0 sm:pt-16 2xl:pt-16" style={{backgroundImage: "url(" + imgy + ")"}}>
             <div className="mx-auto w-full max-w-7xl px-5 py-10 md:px-6 md:py-12 mt-16">
                 <div className="grid gap-12 sm:gap-12 md:grid-cols-2">
                     <motion.div 
