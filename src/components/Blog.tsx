@@ -4,6 +4,7 @@ import React from 'react'
 import useWindowDimensions from '../../hooks/useWindowDimensions';
 import { urlFor } from '@/sanity/lib/image';
 import dayjs from "dayjs";
+import 'dayjs/locale/fr'
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -49,6 +50,8 @@ function Blog({setting, posts} : any) {
     };
 
     const imgy = width && width > 640 ? '/backgrounds/desks/d5.png' : '/backgrounds/mobiles/m2/m5.jpeg';
+
+    dayjs.locale('fr')
 
   return (
     <section className="bg-cover bg-no-repeat md:bg-gray-50 bg-blend-multiply pt-10" style={{backgroundImage: "url(" + imgy + ")"}} id='blog'>
