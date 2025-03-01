@@ -1101,7 +1101,7 @@
     }
   },
   {
-    "name": "listing",
+    "name": "project",
     "type": "document",
     "attributes": {
       "_id": {
@@ -1114,7 +1114,7 @@
         "type": "objectAttribute",
         "value": {
           "type": "string",
-          "value": "listing"
+          "value": "project"
         }
       },
       "_createdAt": {
@@ -1147,6 +1147,20 @@
         "value": {
           "type": "inline",
           "name": "slug"
+        },
+        "optional": true
+      },
+      "price": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "number"
+        },
+        "optional": true
+      },
+      "location": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
         },
         "optional": true
       },
@@ -1398,80 +1412,7 @@
         },
         "optional": true
       },
-      "address": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "string"
-        },
-        "optional": true
-      },
-      "regularPrice": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "number"
-        },
-        "optional": true
-      },
-      "discountPrice": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "number"
-        },
-        "optional": true
-      },
-      "bathrooms": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "number"
-        },
-        "optional": true
-      },
-      "bedrooms": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "number"
-        },
-        "optional": true
-      },
-      "furnished": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "boolean"
-        },
-        "optional": true
-      },
-      "parking": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "boolean"
-        },
-        "optional": true
-      },
-      "type": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "union",
-          "of": [
-            {
-              "type": "string",
-              "value": "rent"
-            },
-            {
-              "type": "string",
-              "value": "sale"
-            }
-          ]
-        },
-        "optional": true
-      },
-      "offer": {
-        "type": "objectAttribute",
-        "value": {
-          "type": "boolean"
-        },
-        "optional": true
-      },
-      "mainImage": {
+      "photo": {
         "type": "objectAttribute",
         "value": {
           "type": "object",
@@ -1519,13 +1460,6 @@
               "value": {
                 "type": "inline",
                 "name": "sanity.imageCrop"
-              },
-              "optional": true
-            },
-            "alt": {
-              "type": "objectAttribute",
-              "value": {
-                "type": "string"
               },
               "optional": true
             },
