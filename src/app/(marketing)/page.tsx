@@ -7,7 +7,8 @@ import Hero from '@/components/Hero';
 import Partners from '@/components/Partners';
 import Projects from '@/components/Projects';
 import Team from '@/components/Team';
-import { getAbout, getAllPosts, getFeaturedPartner, getHomeSetting, getPartnerTypes, getProjectTypes, getPropertyTypes, getTeamTypes, getZoneTypes } from '@/sanity/queries';
+import VideoSet from '@/components/VideoSet';
+import { getAbout, getAllPosts, getFeaturedPartner, getHomeSetting, getPartnerTypes, getProjectTypes, getTeamTypes, getZoneTypes } from '@/sanity/queries';
 import { notFound } from 'next/navigation';
 import React from 'react'
 
@@ -26,6 +27,7 @@ async function Home() {
     <>
       <Header setting={settings} />
       <Hero setting={settings} />
+      <VideoSet />
       <About setting={settings} about={about} showTitle={true} />
       <Projects featuredPartner={featuredPartner} setting={settings} projects={projects} />
       <Team setting={settings} teams={teams} zones={zones} />
