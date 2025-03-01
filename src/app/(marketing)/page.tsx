@@ -17,7 +17,7 @@ async function Home() {
   const featuredPartner = (await getFeaturedPartner("notre-collaborateur-a-dubai")) || notFound();
   const projects = await getProjectTypes();
   const teams = await getTeamTypes();
-  const properties = await getPropertyTypes();
+  //const properties = await getPropertyTypes();
   const zones = await getZoneTypes();
   const posts = await getAllPosts(5);
   const partners = await getPartnerTypes();

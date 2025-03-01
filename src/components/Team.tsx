@@ -9,6 +9,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { TeamModal } from './modals/TeamModal';
 import Link from 'next/link';
 import { motion } from "framer-motion";
+import { TeamModal2 } from './modals/TeamModal2';
 
 function Team({setting, teams, zones} : any) {
     const { width } : any = useWindowDimensions();
@@ -111,7 +112,12 @@ function Team({setting, teams, zones} : any) {
                                         <span className="text-sm text-gray-400">
                                             {team.title}
                                         </span>
-                                        <TeamModal team={team} />
+                                        {width && width > 640 ? (
+                                          <TeamModal team={team} />
+                                        ) : (
+                                          <TeamModal2 team={team} />
+                                        )}
+                                        
                                     </div>
                                 </div>
                             ))}
