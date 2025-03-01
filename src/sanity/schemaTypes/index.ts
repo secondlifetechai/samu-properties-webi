@@ -13,7 +13,8 @@ import { contactType } from "./contactType";
 import { projectType } from "./projectType";
 import { listingType } from "./listingType";
 import { featuredPartnerType } from "./featuredPartnerType";
+import { zoneType } from "./zoneType";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [blockContentType, categoryType, postType, authorType, commentType, homeSettingsType, aboutType, partnerType, teamType, contactType, projectType, listingType, featuredPartnerType],
+  types: [blockContentType, categoryType, postType, authorType, commentType, homeSettingsType, aboutType, partnerType, teamType, contactType, projectType, listingType, featuredPartnerType, zoneType],
 };

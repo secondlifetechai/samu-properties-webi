@@ -68,6 +68,59 @@ export type Geopoint = {
   alt?: number;
 };
 
+export type Zone = {
+  _id: string;
+  _type: "zone";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  slug?: Slug;
+  location?: string;
+  emirate?: "Abu Dhabi" | "Dubai" | "Sharjah" | "Ajman" | "Umm Al Quwain" | "Ras Al Khaimah" | "Fujairah";
+  description?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }>;
+  photo?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+};
+
 export type FeaturedPartners = {
   _id: string;
   _type: "featuredPartners";
@@ -76,6 +129,7 @@ export type FeaturedPartners = {
   _rev: string;
   title?: string;
   slug?: Slug;
+  website?: string;
   description?: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -258,6 +312,36 @@ export type Team = {
   title?: string;
   subTitle?: string;
   slug?: Slug;
+  about?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "blockquote";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }>;
   photo?: {
     asset?: {
       _ref: string;
@@ -279,6 +363,7 @@ export type Partner = {
   _rev: string;
   name?: string;
   slug?: Slug;
+  website?: string;
   description?: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -716,7 +801,7 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | FeaturedPartners | Listing | Project | Contact | Team | Partner | About | HomeSettings | Comment | Post | Author | Category | Slug | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Zone | FeaturedPartners | Listing | Project | Contact | Team | Partner | About | HomeSettings | Comment | Post | Author | Category | Slug | BlockContent | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/queries.ts
 // Variable: FEATURED_POSTS_QUERY
@@ -794,7 +879,7 @@ export type CATEGORIES_QUERYResult = Array<{
   slug: string | null;
 }>;
 // Variable: POST_QUERY
-// Query: *[_type=='post' && slug.current == $slug][0]{   publishedAt,  title,  mainImage,  excerpt,  body,  _id,  author->{    name,    image,  },  categories[]->{    title,    "slug": slug.current,  },  "comments": *[_type == "comment" && post._ref == ^._id && approved == true]{    name,    email,    comment,    image,    _id  }}
+// Query: *[_type=='post' && slug.current == $slug][0]{  publishedAt,  title,  mainImage,  excerpt,  body,  _id,  author->{    name,    image,  },  categories[]->{    title,    "slug": slug.current,  },  "comments": *[_type == "comment" && post._ref == ^._id && approved == true]{    name,    email,    comment,    image,    _id  }}
 export type POST_QUERYResult = {
   publishedAt: string | null;
   title: string | null;
@@ -1112,7 +1197,7 @@ export type ABOUT_QUERYResult = {
   _id: string;
 } | null;
 // Variable: FEATURED_PARTNER_QUERY
-// Query: *[_type=='featuredPartners' && slug.current == $slug][0]{  title,  description,  logo, _id}
+// Query: *[_type=='featuredPartners' && slug.current == $slug][0]{  title,  description,  website,  logo, _id}
 export type FEATURED_PARTNER_QUERYResult = {
   title: string | null;
   description: Array<{
@@ -1145,6 +1230,7 @@ export type FEATURED_PARTNER_QUERYResult = {
     _type: "image";
     _key: string;
   }> | null;
+  website: string | null;
   logo: {
     asset?: {
       _ref: string;
@@ -1208,7 +1294,7 @@ export type PROJECTS_QUERYResult = Array<{
   slug: string | null;
 }>;
 // Variable: TEAMS_QUERY
-// Query: *[_type=='team']|order(name asc){  name,  title,  photo,  "slug":slug.current}
+// Query: *[_type=='team']|order(name asc){  name,  title,  photo,  about,  "slug":slug.current}
 export type TEAMS_QUERYResult = Array<{
   name: string | null;
   title: string | null;
@@ -1223,6 +1309,36 @@ export type TEAMS_QUERYResult = Array<{
     crop?: SanityImageCrop;
     _type: "image";
   } | null;
+  about: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }> | null;
   slug: string | null;
 }>;
 // Variable: PROPERTIES_QUERY
@@ -1283,9 +1399,10 @@ export type PROPERTIES_QUERYResult = Array<{
   slug: string | null;
 }>;
 // Variable: PARTNERS_QUERY
-// Query: *[_type=='partner']|order(name asc){  name,  description,  isFeatured,  logo,  "slug":slug.current}
+// Query: *[_type=='partner']|order(name asc){  name,  website,  description,  isFeatured,  logo,  "slug":slug.current}
 export type PARTNERS_QUERYResult = Array<{
   name: string | null;
+  website: string | null;
   description: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -1330,6 +1447,210 @@ export type PARTNERS_QUERYResult = Array<{
   } | null;
   slug: string | null;
 }>;
+// Variable: PROJECT_QUERY
+// Query: *[_type=='project' && slug.current == $slug][0]{  name,  price,  location,  description,  photo, _id}
+export type PROJECT_QUERYResult = {
+  name: string | null;
+  price: number | null;
+  location: string | null;
+  description: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }> | null;
+  photo: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+  _id: string;
+} | null;
+// Variable: PROPERTY_QUERY
+// Query: *[_type=='listing' && slug.current == $slug][0]{  name,  description,  address,  regularPrice,  discountPrice,  bathrooms,  bedrooms,  furnished,  parking,  type,  offer,  mainImage, _id}
+export type PROPERTY_QUERYResult = {
+  name: string | null;
+  description: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }> | null;
+  address: string | null;
+  regularPrice: number | null;
+  discountPrice: number | null;
+  bathrooms: number | null;
+  bedrooms: number | null;
+  furnished: boolean | null;
+  parking: boolean | null;
+  type: "rent" | "sale" | null;
+  offer: boolean | null;
+  mainImage: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+  } | null;
+  _id: string;
+} | null;
+// Variable: ZONES_QUERY
+// Query: *[_type=='zone']|order(name asc){  name,  location,  emirate,  description,  photo,  "slug":slug.current}
+export type ZONES_QUERYResult = Array<{
+  name: string | null;
+  location: string | null;
+  emirate: "Abu Dhabi" | "Ajman" | "Dubai" | "Fujairah" | "Ras Al Khaimah" | "Sharjah" | "Umm Al Quwain" | null;
+  description: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }> | null;
+  photo: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+  slug: string | null;
+}>;
+// Variable: ZONE_QUERY
+// Query: *[_type=='zone' && slug.current == $slug][0]{  name,  location,  emirate,  description,  photo, _id}
+export type ZONE_QUERYResult = {
+  name: string | null;
+  location: string | null;
+  emirate: "Abu Dhabi" | "Ajman" | "Dubai" | "Fujairah" | "Ras Al Khaimah" | "Sharjah" | "Umm Al Quwain" | null;
+  description: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "normal";
+    listItem?: "bullet";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }> | null;
+  photo: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+  _id: string;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
@@ -1338,15 +1659,19 @@ declare module "@sanity/client" {
     "*[_type=='post' && isFeatured==true] | order(publishedAt desc)[0...$quantity]{\n    title,\n    'slug':slug.current,\n    publishedAt,\n    mainImage,\n    excerpt,\n    author->{\n        name, image\n    }\n}": FEATURED_POSTS_QUERYResult;
     "*[\n  _type == \"post\"\n]|order(publishedAt desc)[0...$quantity]{\n  title,\n  \"slug\": slug.current,\n  publishedAt,\n  mainImage,\n  excerpt,\n  author->{\n    name,\n    image,\n  },\n}": ALL_POSTS_QUERYResult;
     "*[_type=='category']|order(title asc){\n  title,\n  \"slug\":slug.current\n}": CATEGORIES_QUERYResult;
-    "*[_type=='post' && slug.current == $slug][0]{\n   publishedAt,\n  title,\n  mainImage,\n  excerpt,\n  body,\n  _id,\n  author->{\n    name,\n    image,\n  },\n  categories[]->{\n    title,\n    \"slug\": slug.current,\n  },\n  \"comments\": *[_type == \"comment\" && post._ref == ^._id && approved == true]{\n    name,\n    email,\n    comment,\n    image,\n    _id\n  }\n}": POST_QUERYResult;
+    "*[_type=='post' && slug.current == $slug][0]{\n  publishedAt,\n  title,\n  mainImage,\n  excerpt,\n  body,\n  _id,\n  author->{\n    name,\n    image,\n  },\n  categories[]->{\n    title,\n    \"slug\": slug.current,\n  },\n  \"comments\": *[_type == \"comment\" && post._ref == ^._id && approved == true]{\n    name,\n    email,\n    comment,\n    image,\n    _id\n  }\n}": POST_QUERYResult;
     "*[\n  _type == \"post\"\n  && select(defined($category) => $category in categories[]->slug.current, true)\n]|order(publishedAt desc){\n  title,\n  \"slug\": slug.current,\n  publishedAt,\n  excerpt,\n  author->{\n    name,\n    image,\n  },\n}": CATEGORY_POSTResult;
     "*[\n  _type == \"post\"\n  && defined(slug.current)\n  && slug.current != $currentSlug\n]|order(publishedAt desc)[0...$quantity]{\n  publishedAt,\n  title,\n  mainImage,\n  excerpt,\n  body,\n  slug,\n  author->{\n    name,\n    image,\n  },\n  categories[]->{\n    title,\n    \"slug\": slug.current,\n  }\n}": GET_OTHERS_POSTS_QUERYResult;
     "*[_type=='homeSettings' && slug.current == $slug][0]{\n  logo,\n  heroTitle,\n  heroSubTitle,\n  heroButton,\n  aboutTitle,\n  projectTitle,\n  teamTitle,\n  propertyTitle,\n  propertySubTitle,\n  propertyButton,\n  blogTitle,\n  blogSubTitle,\n  blogButton,\n  contactTitle,\n  contactSubTitle,\n  contactPhoneNumber,\n  contactEmail,\n  address,\n  insatagramLink,\n  facebookLink,\n  linkedInLink,\n  twitterLink,\n _id\n}": HOME_SETTING_QUERYResult;
     "*[_type=='about' && slug.current == $slug][0]{\n  aboutUs,\n  mission,\n  vision,\n  aboutPhoto,\n _id\n}": ABOUT_QUERYResult;
-    "*[_type=='featuredPartners' && slug.current == $slug][0]{\n  title,\n  description,\n  logo,\n _id\n}": FEATURED_PARTNER_QUERYResult;
+    "*[_type=='featuredPartners' && slug.current == $slug][0]{\n  title,\n  description,\n  website,\n  logo,\n _id\n}": FEATURED_PARTNER_QUERYResult;
     "*[_type=='project']|order(name asc){\n  name,\n  price,\n  location,\n  description,\n  photo,\n  \"slug\":slug.current\n}": PROJECTS_QUERYResult;
-    "*[_type=='team']|order(name asc){\n  name,\n  title,\n  photo,\n  \"slug\":slug.current\n}": TEAMS_QUERYResult;
+    "*[_type=='team']|order(name asc){\n  name,\n  title,\n  photo,\n  about,\n  \"slug\":slug.current\n}": TEAMS_QUERYResult;
     "*[_type=='listing']|order(name asc){\n  name,\n  description,\n  address,\n  regularPrice,\n  discountPrice,\n  bathrooms,\n  bedrooms,\n  furnished,\n  parking,\n  type,\n  offer,\n  mainImage,\n  \"slug\":slug.current\n}": PROPERTIES_QUERYResult;
-    "*[_type=='partner']|order(name asc){\n  name,\n  description,\n  isFeatured,\n  logo,\n  \"slug\":slug.current\n}": PARTNERS_QUERYResult;
+    "*[_type=='partner']|order(name asc){\n  name,\n  website,\n  description,\n  isFeatured,\n  logo,\n  \"slug\":slug.current\n}": PARTNERS_QUERYResult;
+    "*[_type=='project' && slug.current == $slug][0]{\n  name,\n  price,\n  location,\n  description,\n  photo,\n _id\n}": PROJECT_QUERYResult;
+    "*[_type=='listing' && slug.current == $slug][0]{\n  name,\n  description,\n  address,\n  regularPrice,\n  discountPrice,\n  bathrooms,\n  bedrooms,\n  furnished,\n  parking,\n  type,\n  offer,\n  mainImage,\n _id\n}": PROPERTY_QUERYResult;
+    "*[_type=='zone']|order(name asc){\n  name,\n  location,\n  emirate,\n  description,\n  photo,\n  \"slug\":slug.current\n}": ZONES_QUERYResult;
+    "*[_type=='zone' && slug.current == $slug][0]{\n  name,\n  location,\n  emirate,\n  description,\n  photo,\n _id\n}": ZONE_QUERYResult;
   }
 }

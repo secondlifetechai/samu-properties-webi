@@ -42,7 +42,7 @@ function Hero({setting} : any) {
           whileInView={{opacity:1, y:0}}
           transition={{duration:1.5, delay:0.5}}
           className="flex flex-col space-y-4 sm:flex-row sm:justify-center items-center sm:space-y-0 mb-16 md:mb-0">
-          <Link href="/about" className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-slate-300 rounded-lg bg-[#173567] w-72">
+          <Link href="/#contact" className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-slate-300 rounded-lg bg-[#173567] w-72">
             {setting.heroButton}
           </Link>
         </motion.div>

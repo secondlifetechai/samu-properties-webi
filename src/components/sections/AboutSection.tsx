@@ -6,7 +6,6 @@ import { urlFor } from '@/sanity/lib/image';
 import { PortableText } from 'next-sanity';
 import { FaFacebookSquare, FaInstagramSquare, FaTwitterSquare } from 'react-icons/fa';
 import { BsLinkedin } from 'react-icons/bs';
-import Link from 'next/link';
 import { motion } from "framer-motion";
 
 export const AboutSection = ({setting, about} : any) => {
@@ -46,32 +45,32 @@ export const AboutSection = ({setting, about} : any) => {
                         <div className="mt-4 text-xl text-gray-400 dark:text-gray-300 md:mt-8">
                             <span className="relative inline-block">
                                 <span className="absolute inline-block w-full bottom-0.5 h-2 bg-yellow-300 dark:bg-gray-900"></span>
-                            <span className="relative"> Have a question? </span>
+                            <span className="relative"> Vous avez une question ? </span>
                             </span>
-                            <br className="block sm:hidden" /> Ask us on 
+                            <br className="block sm:hidden" /> Demandez-nous sur 
                             <ul className="inline-flex space-x-6 ml-5 items-center mt-2">
                                 <li>
-                                    <Link href={setting.facebookLink}>
+                                    <a href={setting.facebookLink} target='_blank'>
                                         <FaFacebookSquare className="fill-gray-300 hover:fill-white w-7 h-7" />
-                                    </Link>
+                                    </a>
                                 </li>
 
                                 <li>
-                                    <Link href={setting.linkedInLink}>
+                                    <a href={setting.linkedInLink} target='_blank'>
                                         <BsLinkedin className="fill-gray-300 hover:fill-white w-7 h-7" />
-                                    </Link>
+                                    </a>
                                 </li>
 
                                 <li>
-                                    <Link href={setting.twitterLink}>
+                                    <a href={setting.twitterLink} target='_blank'>
                                         <FaTwitterSquare className="fill-gray-300 hover:fill-white w-7 h-7" />
-                                    </Link>
+                                    </a>
                                 </li>
 
                                 <li>
-                                    <Link href={setting.insatagramLink}>
+                                    <a href={setting.insatagramLink} target='_blank'>
                                         <FaInstagramSquare className="fill-gray-300 hover:fill-white w-7 h-7" />
-                                    </Link>
+                                    </a>
                                 </li>
                             </ul>
                         </div>

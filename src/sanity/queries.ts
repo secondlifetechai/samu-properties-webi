@@ -184,6 +184,7 @@ export const getAbout = async (slug: string) => {
 const FEATURED_PARTNER_QUERY = defineQuery(`*[_type=='featuredPartners' && slug.current == $slug][0]{
   title,
   description,
+  website,
   logo,
  _id
 }`);
@@ -296,6 +297,37 @@ const PROPERTY_QUERY = defineQuery(`*[_type=='listing' && slug.current == $slug]
 export const getProperty = async (slug: string) => {
   return await clientFetch({
     query: PROPERTY_QUERY,
+    params: { slug },
+  });
+};
+
+const ZONES_QUERY = defineQuery(`*[_type=='zone']|order(name asc){
+  name,
+  location,
+  emirate,
+  description,
+  photo,
+  "slug":slug.current
+}`);
+
+export const getZoneTypes = async () => {
+  return await clientFetch({
+    query: ZONES_QUERY,
+  });
+};
+
+const ZONE_QUERY = defineQuery(`*[_type=='zone' && slug.current == $slug][0]{
+  name,
+  location,
+  emirate,
+  description,
+  photo,
+ _id
+}`);
+
+export const getZone = async (slug: string) => {
+  return await clientFetch({
+    query: ZONE_QUERY,
     params: { slug },
   });
 };
