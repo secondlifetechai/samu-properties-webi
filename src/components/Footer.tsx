@@ -33,7 +33,7 @@ function Footer({setting} : any) {
                         whileInView={{opacity:1, y:0}}
                         transition={{duration:1.7, delay:0.7}}
                         className="lg:flex lg:items-center">
-                        <ul className="flex space-x-6 mr-10">
+                        <ul className="grid grid-cols-2 gap-6 md:grid-cols-4">
                             <li>
                                 <Link href={setting.facebookLink}>
                                     <FaFacebookSquare className="fill-gray-300 hover:fill-white w-7 h-7" />

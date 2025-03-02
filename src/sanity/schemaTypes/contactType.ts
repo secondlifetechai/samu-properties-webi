@@ -32,7 +32,7 @@ export const contactType = defineType({
     }),
     defineField({
         name: 'enquiry',
-        type: 'string',
+        type: 'text',
     }),
     defineField({
         name: 'budget',

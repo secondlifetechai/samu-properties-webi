@@ -1,13 +1,50 @@
 "use client"
 
-import React from 'react'
+import React, { useState } from 'react'
 import useWindowDimensions from '../../hooks/useWindowDimensions';
 import { motion } from "framer-motion";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { CheckCircle } from 'lucide-react';
+
+interface FormInput {
+    name: string;
+    email: string;
+    phone: string;
+    title: string;
+    enquiry: string;
+    budget: string;
+    selectedOption: string;
+}
 
 const Contact = ({setting} : any) => {
      const { width } : any = useWindowDimensions();
+     const [selectedOption, setSelectedOption] = useState('Propriétés');
+     const [submitted, setSubmitted] = useState(false);
+     const {
+        register,
+        handleSubmit,
+        formState: { errors },
+      } = useForm<FormInput>();
+
+     const options = ['Propriétés', 'Investissements', 'Déménagement'];
 
      const imgy = width && width > 640 ? '/backgrounds/desks/d2.png' : '/backgrounds/mobiles/m2/m6.jpeg';
+
+     const onSubmit: SubmitHandler<FormInput> = (data) => {
+        try {
+          fetch("/api/create-contact", {
+            method: "POST",
+            body: JSON.stringify({
+              ...data,
+              selectedOption: selectedOption,
+            }),
+          });
+        } catch (error) {
+          console.error("Create contact error", error);
+        } finally {
+          setSubmitted(true);
+        }
+    };
 
   return (
     <div className="mx-auto bg-cover bg-no-repeat md:bg-gray-50 bg-blend-multiply" style={{backgroundImage: "url(" + imgy + ")"}} id='contact'>
@@ -108,28 +145,102 @@ const Contact = ({setting} : any) => {
                 className="bg-gray-100 p-6 rounded-lg">
                 <p className="text-sm font-semibold text-gray-800">je suis intéressé par...</p>
                 <div className="space-y-4 max-lg:mt-4">
-                    <button type="button" className="px-4 py-2 rounded-lg bg-[#173567] text-white text-sm tracking-wider font-medium outline-none border-2 border-[#173567] mr-4">Propriétés</button>
-                    <button type="button" className="px-4 py-2 rounded-lg bg-transparent text-gray-800 text-sm tracking-wider font-medium outline-none border-2 border-gray-300 mr-4">Investissements</button>
-                    <button type="button" className="px-4 py-2 rounded-lg bg-transparent text-gray-800 text-sm tracking-wider font-medium outline-none border-2 border-gray-300">Déménagement</button>
+                    { options.map((option, i) => (
+                        <button 
+                            key={i} 
+                            type="button" 
+                            onClick={() => setSelectedOption(option)}
+                            className={`px-4 py-2 rounded-lg ${ selectedOption === option ? 'bg-[#173567] text-white border-[#173567]' : 'bg-transparent text-gray-800 border-gray-300'} text-sm tracking-wider font-medium outline-none border-2  mr-4`}>
+                            {option}
+                        </button>
+                    ))}
                 </div>
+                
+                {submitted ? (
+                    <div className="flex items-center justify-center p-5">
+                        <div className="w-full max-w-2xl px-6 py-16 rounded-lg shadow-xl bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 text-white">
+                        <div className="flex flex-col items-center space-y-4">
+                            <CheckCircle className="w-16 h-16 text-green-300" />
+                            <h1 className="text-3xl font-bold text-center">
+                                Merci d'avoir soumis votre demande!
+                            </h1>
+                            <p className="text-lg text-center">
+                                Nous vous répondrons dans les plus brefs délais.
+                            </p>
+                            <div className="mt-6 text-sm text-gray-300">
+                                Nous apprécions votre patience et apprécions votre contribution.
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                ) : (
+                    <form onSubmit={handleSubmit(onSubmit)} className="mt-8 space-y-4">
+                        <input {...register("selectedOption")} type="hidden" name="selectedOption" value={selectedOption} />
+                        <input type='text' 
+                            {...register("name", { required: true })}
+                            placeholder='Nom et prénom'
+                            className="w-full rounded-lg py-3 px-4 text-gray-800 text-sm outline-[#173567]" />
+                            {errors && errors?.name && (
+                                <div className="text-red-600">
+                                - Le champ Nom est obligatoire
+                                </div>
+                            )}
+                        <input type='email' 
+                            {...register("email", { required: true })}
+                            placeholder='E-mail'
+                            className="w-full rounded-lg py-3 px-4 text-gray-800 text-sm outline-[#173567]" />
+                            {errors && errors?.email && (
+                                <div className="text-red-600">
+                                - Le champ Email est obligatoire
+                                </div>
+                            )}
+                        <input type='text' 
+                            {...register("phone", { required: true })}
+                            placeholder='Numéro de téléphone'
+                            className="w-full rounded-lg py-3 px-4 text-gray-800 text-sm outline-[#173567]" />
+                            {errors && errors?.phone && (
+                                <div className="text-red-600">
+                                - Le champ Numéro de téléphone est obligatoire
+                                </div>
+                            )}
+                        <input type='text' 
+                            {...register("title", { required: true })}
+                            placeholder='Sujette'
+                            className="w-full rounded-lg py-3 px-4 text-gray-800 text-sm outline-[#173567]" />
+                            {errors && errors?.title && (
+                                <div className="text-red-600">
+                                - Le champ Objet est obligatoire
+                                </div>
+                            )}
+                        <input type='text' 
+                            {...register("budget", { required: true })}
+                            placeholder='Budget'
+                            className="w-full rounded-lg py-3 px-4 text-gray-800 text-sm outline-[#173567]" />
+                            {errors && errors?.budget && (
+                                <div className="text-red-600">
+                                - Le champ Budget est obligatoire
+                                </div>
+                            )}
+                        <textarea 
+                            {...register("enquiry", { required: true })}
+                            placeholder='Enquête?' 
+                            rows={6}
+                            className="w-full rounded-lg px-4 text-gray-800 text-sm pt-3 outline-[#173567]" />
+                            {errors && errors?.enquiry && (
+                                <div className="text-red-600">
+                                - Le champ de demande est obligatoire
+                                </div>
+                            )}
 
-                <form className="mt-8 space-y-4">
-                    <input type='text' placeholder='Nom'
-                        className="w-full rounded-lg py-3 px-4 text-gray-800 text-sm outline-[#173567]" />
-                    <input type='email' placeholder='E-mail'
-                        className="w-full rounded-lg py-3 px-4 text-gray-800 text-sm outline-[#173567]" />
-                    <input type='text' placeholder='Subject'
-                        className="w-full rounded-lg py-3 px-4 text-gray-800 text-sm outline-[#173567]" />
-                    <textarea placeholder='Message' rows={6}
-                        className="w-full rounded-lg px-4 text-gray-800 text-sm pt-3 outline-[#173567]"></textarea>
-                    <button type='button'
-                        className="text-white bg-[#173567] hover:bg-[#1064a9e2] tracking-wide rounded-lg text-sm px-4 py-3 flex items-center justify-center w-full !mt-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill='#fff' className="mr-2" viewBox="0 0 548.244 548.244">
-                            <path fillRule="evenodd" d="M392.19 156.054 211.268 281.667 22.032 218.58C8.823 214.168-.076 201.775 0 187.852c.077-13.923 9.078-26.24 22.338-30.498L506.15 1.549c11.5-3.697 24.123-.663 32.666 7.88 8.542 8.543 11.577 21.165 7.879 32.666L390.89 525.906c-4.258 13.26-16.575 22.261-30.498 22.338-13.923.076-26.316-8.823-30.728-22.032l-63.393-190.153z" clipRule="evenodd" data-original="#000000" />
-                        </svg>
-                        Envoyer un message
-                    </button>
-                </form>
+                        <button type="submit"
+                            className="text-white bg-[#173567] hover:bg-[#1064a9e2] tracking-wide rounded-lg text-sm px-4 py-3 flex items-center justify-center w-full !mt-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill='#fff' className="mr-2" viewBox="0 0 548.244 548.244">
+                                <path fillRule="evenodd" d="M392.19 156.054 211.268 281.667 22.032 218.58C8.823 214.168-.076 201.775 0 187.852c.077-13.923 9.078-26.24 22.338-30.498L506.15 1.549c11.5-3.697 24.123-.663 32.666 7.88 8.542 8.543 11.577 21.165 7.879 32.666L390.89 525.906c-4.258 13.26-16.575 22.261-30.498 22.338-13.923.076-26.316-8.823-30.728-22.032l-63.393-190.153z" clipRule="evenodd" data-original="#000000" />
+                            </svg>
+                            Envoyer un message
+                        </button>
+                    </form>
+                )}
             </motion.div>
         </div>
     </div>
