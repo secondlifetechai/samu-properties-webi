@@ -1,5 +1,6 @@
 "use client"
 
+import LoadingSection from "@/components/LoadingSection";
 import { useEffect, useState } from "react";
 
 export default function MarketingLayout({
@@ -14,7 +15,9 @@ export default function MarketingLayout({
   }, [isLoaded])
 
   if (!isLoaded) {
-    return <h1>LOADING...</h1>
+    return (
+      <LoadingSection />
+    )
   }
   return (
     <>
