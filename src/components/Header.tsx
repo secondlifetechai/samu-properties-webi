@@ -1,7 +1,7 @@
 "use client"
 
 import { urlFor } from '@/sanity/lib/image'
-import { Phone } from 'lucide-react'
+import { Mail, Phone } from 'lucide-react'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { BsWhatsapp } from 'react-icons/bs'
@@ -16,8 +16,8 @@ function Header({setting} : any) {
             <img src={urlFor(setting?.logo).url()} alt='Samu Properties Logo' className="h-8" />
         </Link>
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-            <a href='https://w.app/samu-properties' target="_blank">
-                <BsWhatsapp className='text-slate-300 text-center mx-6 my-2 text-2xl' />
+            <a href='mailto:samuproperities@gmail.com' target="_blank">
+                <Mail className='text-slate-300 text-center mx-6 my-2 text-2xl' />
             </a>
             <a href="tel:+18739931780">
                 <Phone className='text-slate-300 text-center mx-6 my-2 text-2xl' />

@@ -13,14 +13,14 @@ function VideoSet() {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 2,
+        slidesToShow: 1,
         slidesToScroll: 1,
         initialSlide: 0,
         responsive: [
           {
             breakpoint: 1024,
             settings: {
-              slidesToShow: 2,
+              slidesToShow: 1,
               slidesToScroll: 1,
               infinite: true,
               dots: true
@@ -63,17 +63,17 @@ function VideoSet() {
                     transition={{duration:1.8, delay:0.8}}
                     className="w-full h-fit px-8">
                     <Slider {...settings}>
-                        <div className="rounded-lg shadow-lg bg-[#173567] bg-opacity-40 text-slate-200 max-w-lg border border-[#173567]">
+                        <div className="rounded-lg shadow-lg bg-[#173567] bg-opacity-40 text-slate-200 border border-[#173567]">
                             <a href="#!">
-                                <video width="320" height="240" controls className="w-full rounded-t-lg">
-                                    <source src="/videos/vid1.mp4" type="video/mp4" />
+                                <video controls autoPlay muted className="w-full rounded-t-lg">
+                                    <source src="/videos/vid2.mp4" type="video/mp4" />
                                     <source src="movie.ogg" type="video/ogg" />
                                     Your browser does not support the video tag.
                                 </video>
                             </a>
                             <div className="p-6">
                                 <h5 className="text-gray-300 text-xl font-medium mb-2">
-                                    Plongez dans le luxe avec Object One !
+                                    THE OASIS par EMAAR - L'excellence du luxe
                                 </h5>
                                 {/* <p className="text-gray-400 text-base mb-4">
                                 Découvrez notre showroom où qualité et finitions d'exception prennent vie. Chaque détail est pensé pour vous offrir un cadre élégant et raffiné. 
@@ -84,9 +84,9 @@ function VideoSet() {
                             </div>
                         </div>
 
-                        <div className="rounded-lg shadow-lg bg-[#173567] bg-opacity-40 text-slate-200 max-w-lg border border-[#173567]">
+                        <div className="rounded-lg shadow-lg bg-[#173567] bg-opacity-40 text-slate-200 border border-[#173567]">
                             <a href="#!">
-                                <video width="320" height="240" controls className="w-full rounded-t-lg">
+                                <video controls autoPlay muted className="w-full rounded-t-lg">
                                     <source src="/videos/vid1.mp4" type="video/mp4" />
                                     <source src="movie.ogg" type="video/ogg" />
                                     Your browser does not support the video tag.

@@ -46,9 +46,9 @@ export const ProjectSection = ({ project } : any) => {
                         <div className="mb-8 mt-8 h-px w-full bg-slate-700"></div>
                         <div className="mb-6 flex flex-col gap-2 text-sm text-gray-300 sm:text-base md:mb-8">
                             <p className="text-lg">
-                                <strong>Price: </strong>{(project?.price)?.toLocaleString('en-US', {
+                                <strong>Prix: </strong>{(project?.price)?.toLocaleString('en-US', {
                                                 style: 'currency',
-                                                currency: 'AED',
+                                                currency: 'CAD',
                                             })}
                             </p>
                         </div>
@@ -58,8 +58,8 @@ export const ProjectSection = ({ project } : any) => {
                         initial={{opacity:0, y:100}}
                         whileInView={{opacity:1, y:0}}
                         transition={{duration:1.8, delay:0.8}}
-                        className="min-h-[530px] overflow-hidden rounded-md bg-gray-100">
-                        <img className="w-full" src={urlFor(project?.photo).url()} alt="" />
+                        className="min-h-full overflow-hidden rounded-md">
+                        <img className=" w-full object-cover" src={urlFor(project?.photo).url()} alt="" />
                     </motion.div>
                 </div>
             </div>

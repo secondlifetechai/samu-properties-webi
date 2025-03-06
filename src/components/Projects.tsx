@@ -20,6 +20,7 @@ function Projects({featuredPartner, setting, projects} : any) {
         speed: 500,
         slidesToShow: 2,
         slidesToScroll: 1,
+        autoplay: true,
         initialSlide: 0,
         responsive: [
           {
@@ -117,7 +118,7 @@ function Projects({featuredPartner, setting, projects} : any) {
                                             <span className="text-lg font-bold text-gray-400 ">
                                                 {(project?.price)?.toLocaleString('en-US', {
                                                     style: 'currency',
-                                                    currency: 'AED',
+                                                    currency: 'CAD',
                                                 })}
                                             </span>
                                         )}
