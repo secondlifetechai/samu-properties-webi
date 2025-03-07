@@ -20,6 +20,7 @@ function Blog({setting, posts} : any) {
         speed: 500,
         slidesToShow: 2,
         slidesToScroll: 1,
+        autoplay: true,
         initialSlide: 0,
         responsive: [
           {
