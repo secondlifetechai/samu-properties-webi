@@ -17,10 +17,10 @@ function Blog({setting, posts} : any) {
     const settings = {
         dots: false,
         infinite: true,
-        speed: 500,
         slidesToShow: 2,
         slidesToScroll: 1,
         autoplay: true,
+        speed: 500,
         initialSlide: 0,
         responsive: [
           {
