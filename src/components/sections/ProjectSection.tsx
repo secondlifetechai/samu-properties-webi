@@ -9,6 +9,10 @@ export const ProjectSection = ({ project } : any) => {
     const { width } : any = useWindowDimensions();
     
     const imgy = width && width > 640 ? '/backgrounds/desks/d3.png' : '/backgrounds/mobiles/m2/m3.jpeg';
+    const CADollar = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'CAD',
+    });
 
     return (
         <section className="pt-10 overflow-hidden bg-cover bg-center bg-no-repeat bg-blend-multiply md:bg-gray-50 md:pt-0 sm:pt-16 2xl:pt-16" style={{backgroundImage: "url(" + imgy + ")"}}>
@@ -46,10 +50,8 @@ export const ProjectSection = ({ project } : any) => {
                         <div className="mb-8 mt-8 h-px w-full bg-slate-700"></div>
                         <div className="mb-6 flex flex-col gap-2 text-sm text-gray-300 sm:text-base md:mb-8">
                             <p className="text-lg">
-                                <strong>Prix: </strong>{(project?.price)?.toLocaleString('en-US', {
-                                                style: 'currency',
-                                                currency: 'CAD',
-                                            })}
+                                <strong>Prix: </strong>
+                                {CADollar.format(project?.price).replace('CA$', '')} CAD
                             </p>
                         </div>
                     </motion.div>

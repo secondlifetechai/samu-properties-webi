@@ -51,6 +51,10 @@ function Projects({featuredPartner, setting, projects} : any) {
     };
 
     const imgy = width && width > 640 ? '/backgrounds/desks/d3.png' : '/backgrounds/mobiles/m2/m3.jpeg';
+    const CADollar = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'CAD',
+    });
 
   return (
     <section className="bg-cover bg-no-repeat md:bg-gray-100 bg-blend-multiply flex flex-col" style={{backgroundImage: "url(" + imgy + ")"}}>
@@ -116,10 +120,7 @@ function Projects({featuredPartner, setting, projects} : any) {
                                     <div className="flex items-center justify-between">
                                         {project?.price && (
                                             <span className="text-lg font-bold text-gray-400 ">
-                                                {(project?.price)?.toLocaleString('en-US', {
-                                                    style: 'currency',
-                                                    currency: 'CAD',
-                                                })}
+                                                {CADollar.format(project?.price).replace('CA$', '')} CAD
                                             </span>
                                         )}
                                         
