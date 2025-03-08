@@ -6,11 +6,21 @@ import { PortableText } from "next-sanity";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/css/image-gallery.css";
 
 export const ZoneSection = ({ zone } : any) => {
     const { width } : any = useWindowDimensions();
         
     const imgy = width && width > 640 ? '/backgrounds/desks/d4.png' : '/backgrounds/mobiles/m2/m4.jpeg';
+
+    let zoneImages = null;
+
+    if(zone?.gallery?.length > 0) {
+        zoneImages = zone?.gallery.map((pic : any)  => { 
+            return {original: urlFor(pic).url(), thumbnail: urlFor(pic).url()}
+        })
+    }
 
     return (
         <section className="pt-10 overflow-hidden bg-cover bg-center bg-no-repeat bg-blend-multiply md:bg-gray-50 md:pt-0 sm:pt-16 2xl:pt-16 antialiased" style={{backgroundImage: "url(" + imgy + ")"}}>
@@ -21,8 +31,15 @@ export const ZoneSection = ({ zone } : any) => {
                         whileInView={{opacity:1, y:0}}
                         transition={{duration:1.6, delay:0.6}}
                         className="shrink-0 max-w-md lg:max-w-lg mx-auto">
-                        <img className="w-full dark:hidden" src={urlFor(zone?.photo).url()} alt="" />
-                        <img className="w-full hidden dark:block" src={urlFor(zone?.photo).url()} alt="" />
+                        {zoneImages ? 
+                            <>
+                                <ImageGallery items={zoneImages} /> 
+                            </>
+                            : <>
+                                <img className="w-full dark:hidden" src={urlFor(zone?.photo).url()} alt="" />
+                                <img className="w-full hidden dark:block" src={urlFor(zone?.photo).url()} alt="" />
+                            </>
+                        }
                     </motion.div>
 
                     <motion.div 

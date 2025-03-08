@@ -309,6 +309,7 @@ const ZONES_QUERY = defineQuery(`*[_type=='zone']|order(name asc){
   emirate,
   description,
   photo,
+  gallery,
   "slug":slug.current
 }`);
 
@@ -324,6 +325,7 @@ const ZONE_QUERY = defineQuery(`*[_type=='zone' && slug.current == $slug][0]{
   emirate,
   description,
   photo,
+  gallery,
  _id
 }`);
 

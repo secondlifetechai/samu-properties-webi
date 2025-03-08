@@ -4,6 +4,8 @@ import { urlFor } from "@/sanity/lib/image";
 import useWindowDimensions from "../../../hooks/useWindowDimensions";
 import { PortableText } from "next-sanity";
 import { motion } from "framer-motion";
+import ImageGallery from "react-image-gallery";
+import "react-image-gallery/styles/css/image-gallery.css";
 
 export const ProjectSection = ({ project } : any) => {
     const { width } : any = useWindowDimensions();
@@ -14,6 +16,14 @@ export const ProjectSection = ({ project } : any) => {
         currency: 'CAD',
     });
 
+    let projectImages = null;
+
+    if(project?.gallery?.length > 0) {
+        projectImages = project?.gallery.map((pic : any)  => { 
+            return {original: urlFor(pic).url(), thumbnail: urlFor(pic).url()}
+        })
+    }
+    
     return (
         <section className="pt-10 overflow-hidden bg-cover bg-center bg-no-repeat bg-blend-multiply md:bg-gray-50 md:pt-0 sm:pt-16 2xl:pt-16" style={{backgroundImage: "url(" + imgy + ")"}}>
             <div className="mx-auto w-full max-w-7xl px-5 py-10 md:px-6 md:py-12 mt-16">
@@ -61,7 +71,14 @@ export const ProjectSection = ({ project } : any) => {
                         whileInView={{opacity:1, y:0}}
                         transition={{duration:1.8, delay:0.8}}
                         className="min-h-full overflow-hidden rounded-md">
-                        <img className=" w-full object-cover" src={urlFor(project?.photo).url()} alt="" />
+                        {projectImages ? 
+                            <>
+                                <ImageGallery items={projectImages} /> 
+                            </>
+                            : <>
+                                <img className=" w-full object-cover" src={urlFor(project?.photo).url()} alt="" />
+                            </>
+                        }
                     </motion.div>
                 </div>
             </div>

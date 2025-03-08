@@ -49,5 +49,15 @@ export const zoneType = defineType({
         title: 'Project Photo',
         type: 'image',
     }),
+    defineField({
+      name: 'gallery',
+      type: 'array',
+      of: [
+        { type: 'image' }
+      ],
+      options: {
+        layout: 'grid'
+      }
+    }),
   ],
 })
