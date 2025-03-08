@@ -27,7 +27,7 @@ export const projectType = defineType({
     defineField({
       name: 'location',
       type: 'string',
-  }),
+    }),
     defineField({
         name: "description",
         type: "blockContent",
@@ -36,6 +36,16 @@ export const projectType = defineType({
         name: 'photo',
         title: 'Project Photo',
         type: 'image',
+    }),
+    defineField({
+      name: 'gallery',
+      type: 'array',
+      of: [
+        { type: 'image' }
+      ],
+      options: {
+        layout: 'grid'
+      }
     }),
   ],
 })

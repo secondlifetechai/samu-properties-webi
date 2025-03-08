@@ -202,6 +202,7 @@ const PROJECTS_QUERY = defineQuery(`*[_type=='project']|order(name asc){
   location,
   description,
   photo,
+  gallery,
   "slug":slug.current
 }`);
 
@@ -268,6 +269,7 @@ const PROJECT_QUERY = defineQuery(`*[_type=='project' && slug.current == $slug][
   location,
   description,
   photo,
+  gallery,
  _id
 }`);
 

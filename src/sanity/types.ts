@@ -224,6 +224,18 @@ export type Project = {
     crop?: SanityImageCrop;
     _type: "image";
   };
+  gallery?: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
 };
 
 export type Contact = {
@@ -1184,7 +1196,7 @@ export type FEATURED_PARTNER_QUERYResult = {
   _id: string;
 } | null;
 // Variable: PROJECTS_QUERY
-// Query: *[_type=='project']|order(name asc){  name,  price,  location,  description,  photo,  "slug":slug.current}
+// Query: *[_type=='project']|order(name asc){  name,  price,  location,  description,  photo,  gallery,  "slug":slug.current}
 export type PROJECTS_QUERYResult = Array<{
   name: string | null;
   price: number | null;
@@ -1230,6 +1242,18 @@ export type PROJECTS_QUERYResult = Array<{
     crop?: SanityImageCrop;
     _type: "image";
   } | null;
+  gallery: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }> | null;
   slug: string | null;
 }>;
 // Variable: TEAMS_QUERY
@@ -1333,7 +1357,7 @@ export type PARTNERS_QUERYResult = Array<{
   slug: string | null;
 }>;
 // Variable: PROJECT_QUERY
-// Query: *[_type=='project' && slug.current == $slug][0]{  name,  price,  location,  description,  photo, _id}
+// Query: *[_type=='project' && slug.current == $slug][0]{  name,  price,  location,  description,  photo,  gallery, _id}
 export type PROJECT_QUERYResult = {
   name: string | null;
   price: number | null;
@@ -1379,6 +1403,18 @@ export type PROJECT_QUERYResult = {
     crop?: SanityImageCrop;
     _type: "image";
   } | null;
+  gallery: Array<{
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }> | null;
   _id: string;
 } | null;
 // Variable: PROPERTY_QUERY
@@ -1496,11 +1532,11 @@ declare module "@sanity/client" {
     "*[_type=='homeSettings' && slug.current == $slug][0]{\n  logo,\n  heroTitle,\n  heroSubTitle,\n  heroButton,\n  aboutTitle,\n  projectTitle,\n  teamTitle,\n  propertyTitle,\n  propertySubTitle,\n  propertyButton,\n  blogTitle,\n  blogSubTitle,\n  blogButton,\n  contactTitle,\n  contactSubTitle,\n  contactPhoneNumber,\n  contactEmail,\n  address,\n  insatagramLink,\n  facebookLink,\n  linkedInLink,\n  twitterLink,\n _id\n}": HOME_SETTING_QUERYResult;
     "*[_type=='about' && slug.current == $slug][0]{\n  aboutUs,\n  mission,\n  vision,\n  aboutPhoto,\n _id\n}": ABOUT_QUERYResult;
     "*[_type=='featuredPartners' && slug.current == $slug][0]{\n  title,\n  description,\n  website,\n  logo,\n _id\n}": FEATURED_PARTNER_QUERYResult;
-    "*[_type=='project']|order(name asc){\n  name,\n  price,\n  location,\n  description,\n  photo,\n  \"slug\":slug.current\n}": PROJECTS_QUERYResult;
+    "*[_type=='project']|order(name asc){\n  name,\n  price,\n  location,\n  description,\n  photo,\n  gallery,\n  \"slug\":slug.current\n}": PROJECTS_QUERYResult;
     "*[_type=='team']|order(name asc){\n  name,\n  title,\n  photo,\n  about,\n  \"slug\":slug.current\n}": TEAMS_QUERYResult;
     "*[_type=='listing']|order(name asc){\n  name,\n  description,\n  address,\n  regularPrice,\n  discountPrice,\n  bathrooms,\n  bedrooms,\n  furnished,\n  parking,\n  type,\n  offer,\n  mainImage,\n  \"slug\":slug.current\n}": PROPERTIES_QUERYResult;
     "*[_type=='partner']|order(name asc){\n  name,\n  website,\n  description,\n  isFeatured,\n  logo,\n  \"slug\":slug.current\n}": PARTNERS_QUERYResult;
-    "*[_type=='project' && slug.current == $slug][0]{\n  name,\n  price,\n  location,\n  description,\n  photo,\n _id\n}": PROJECT_QUERYResult;
+    "*[_type=='project' && slug.current == $slug][0]{\n  name,\n  price,\n  location,\n  description,\n  photo,\n  gallery,\n _id\n}": PROJECT_QUERYResult;
     "*[_type=='listing' && slug.current == $slug][0]{\n  name,\n  description,\n  address,\n  regularPrice,\n  discountPrice,\n  bathrooms,\n  bedrooms,\n  furnished,\n  parking,\n  type,\n  offer,\n  mainImage,\n _id\n}": PROPERTY_QUERYResult;
     "*[_type=='zone']|order(name asc){\n  name,\n  location,\n  emirate,\n  description,\n  photo,\n  \"slug\":slug.current\n}": ZONES_QUERYResult;
     "*[_type=='zone' && slug.current == $slug][0]{\n  name,\n  location,\n  emirate,\n  description,\n  photo,\n _id\n}": ZONE_QUERYResult;
