@@ -9,6 +9,10 @@ export const PropertySection = ({ property } : any) => {
     const { width } : any = useWindowDimensions();
         
     const imgy = width && width > 640 ? '/backgrounds/desks/d4.png' : '/backgrounds/mobiles/m2/m4.jpeg';
+    const CADollar = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'CAD',
+    });
 
     return (
         <section className="pt-10 overflow-hidden bg-cover bg-center bg-no-repeat bg-blend-multiply md:bg-gray-50 md:pt-0 sm:pt-16 2xl:pt-16 antialiased" style={{backgroundImage: "url(" + imgy + ")"}}>
@@ -33,10 +37,7 @@ export const PropertySection = ({ property } : any) => {
                         </h1>
                         <div className="mt-4 sm:items-center sm:gap-4 sm:flex">
                             <p className="text-2xl font-extrabold text-gray-300 sm:text-3xl">
-                                {(property?.regularPrice).toLocaleString('en-US', {
-                                    style: 'currency',
-                                    currency: 'AED',
-                                })}
+                                {CADollar.format(property?.regularPrice).replace('CA$', '')} CAD
                             </p>
 
                             <div className="flex items-center gap-2 mt-2 sm:mt-0">

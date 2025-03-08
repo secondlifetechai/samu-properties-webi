@@ -78,7 +78,7 @@ function Blog({setting, posts} : any) {
                           {post.title}
                       </h3>
                       <p className="text-gray-300 text-[13px] font-semibold mt-2">
-                          {dayjs(post?.publishedAt).format("dddd, MMMM D, YYYY")}
+                          {dayjs(post?.publishedAt).format("dddd D, MMMM, YYYY")}
                       </p>
                       <Link href={`/blog-post/${post.slug}`} className="mt-4 inline-block px-4 py-2 rounded tracking-wider bg-gray-200 hover:bg-gray-400 text-gray-900 text-[13px]">
                           En savoir plus

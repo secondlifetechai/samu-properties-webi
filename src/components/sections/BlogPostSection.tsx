@@ -31,7 +31,7 @@ export const BlogPostSection = ({ post } : any) => {
                                     <div>
                                         <span rel="author" className="text-xl font-bold text-gray-300">{post?.author?.name}</span>
                                         <p className="text-base text-gray-300">
-                                            {dayjs(post?.publishedAt).format("dddd, MMMM D, YYYY")}
+                                            {dayjs(post?.publishedAt).format("dddd D, MMMM, YYYY")}
                                         </p>
                                     </div>
                                 </div>
