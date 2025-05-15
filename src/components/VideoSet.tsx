@@ -67,7 +67,7 @@ function VideoSet() {
                             <a href="#!">
                                 <video controls autoPlay muted className="w-full rounded-t-lg">
                                     <source src="/videos/vid2.mp4" type="video/mp4" />
-                                    <source src="movie.ogg" type="video/ogg" />
+                                    <source src="/videos/vid2.ogg" type="video/ogg" />
                                     Your browser does not support the video tag.
                                 </video>
                             </a>
@@ -88,7 +88,7 @@ function VideoSet() {
                             <a href="#!">
                                 <video controls autoPlay muted className="w-full rounded-t-lg">
                                     <source src="/videos/vid1.mp4" type="video/mp4" />
-                                    <source src="movie.ogg" type="video/ogg" />
+                                    <source src="/videos/vid1.ogg" type="video/ogg" />
                                     Your browser does not support the video tag.
                                 </video>
                             </a>
