@@ -65,7 +65,7 @@ function VideoSet() {
                     <Slider {...settings}>
                         <div className="rounded-lg shadow-lg bg-[#173567] bg-opacity-40 text-slate-200 border border-[#173567]">
                             <a href="#!">
-                                <video controls autoPlay muted className="w-full rounded-t-lg">
+                                <video controls autoPlay muted className="w-full rounded-t-lg" webkit-playsInline playsInline>
                                     <source src="/videos/vid2.mp4" type="video/mp4" />
                                     <source src="/videos/vid2.ogg" type="video/ogg" />
                                     Your browser does not support the video tag.
@@ -86,7 +86,7 @@ function VideoSet() {
 
                         <div className="rounded-lg shadow-lg bg-[#173567] bg-opacity-40 text-slate-200 border border-[#173567]">
                             <a href="#!">
-                                <video controls autoPlay muted className="w-full rounded-t-lg">
+                                <video controls autoPlay muted className="w-full rounded-t-lg" webkit-playsInline playsInline>
                                     <source src="/videos/vid1.mp4" type="video/mp4" />
                                     <source src="/videos/vid1.ogg" type="video/ogg" />
                                     Your browser does not support the video tag.
